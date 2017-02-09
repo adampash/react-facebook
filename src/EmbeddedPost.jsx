@@ -12,7 +12,7 @@ export default class EmbeddedPost extends Parser {
     children: PropTypes.node,
     className: PropTypes.string,
     loaded: PropTypes.bool.isRequired,
-    placeholder: PropTypes.node,
+    placeholder: PropTypes.func,
   };
 
   static defaultProps = {
@@ -33,7 +33,7 @@ export default class EmbeddedPost extends Parser {
         data-show-text={showText}
       >
         {children}
-        { loaded && placeholder }
+        { loaded && <placeholder /> }
       </div>
     );
   }

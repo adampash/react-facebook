@@ -31,7 +31,7 @@ export default class Parser extends Component {
   }
 
   shouldComponentUpdate() {
-    return false;
+    // return false;
   }
 
   render() {
