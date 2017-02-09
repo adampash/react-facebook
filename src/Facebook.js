@@ -345,10 +345,8 @@ export default class Facebook {
       if (typeof parentNode === 'undefined') {
         window.FB.XFBML.parse();
       } else {
-        window.FB.XFBML.parse(parentNode);
+        window.FB.XFBML.parse(parentNode, callback);
       }
-
-      callback(null);
     });
   }
 

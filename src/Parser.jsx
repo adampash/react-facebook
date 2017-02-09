@@ -11,6 +11,11 @@ export default class Parser extends Component {
     ...FacebookProvider.childContextTypes,
   };
 
+  constructor(props) {
+    super(props);
+    this.state = { loaded: false }
+  }
+
   componentDidMount() {
     if (!canUseDOM) {
       return;
@@ -21,7 +26,7 @@ export default class Parser extends Component {
         return;
       }
 
-      facebook.parse(this.container, () => {});
+      facebook.parse(this.container, () => this.setState({ loaded: true }));
     });
   }
 
@@ -31,10 +36,11 @@ export default class Parser extends Component {
 
   render() {
     const { className } = this.props;
+    const { loaded } = this.state
 
     return (
       <div className={className} ref={(c) => { this.container = c; }}>
-        {this.renderComponent()}
+        {this.renderComponent(loaded)}
       </div>
     );
   }

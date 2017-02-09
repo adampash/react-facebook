@@ -11,16 +11,19 @@ export default class EmbeddedPost extends Parser {
     showText: PropTypes.bool.isRequired,
     children: PropTypes.node,
     className: PropTypes.string,
+    loaded: PropTypes.bool.isRequired,
+    placeholder: PropTypes.node,
   };
 
   static defaultProps = {
     href: 'http://www.facebook.com',
     width: 500, // 350 - 750
     showText: false,
+    loaded: false,
   };
 
   renderComponent() {
-    const { href, width, showText, children } = this.props;
+    const { href, width, showText, children, loaded, placeholder } = this.props;
 
     return (
       <div
@@ -30,6 +33,7 @@ export default class EmbeddedPost extends Parser {
         data-show-text={showText}
       >
         {children}
+        { loaded && placeholder }
       </div>
     );
   }
